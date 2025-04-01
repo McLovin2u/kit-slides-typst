@@ -3,6 +3,9 @@ Changelog
 
 This file lists new additions and breaking changes. Consult it when updating your presentations to a newer version of the template.
 
+## Unreleased
+* Update polylux version to 0.4.0 (fixes bugs on Typst version 0.13.*)
+
 ## 0.3.2
 * Added GitLab CI configuration
 * Added Changelog
