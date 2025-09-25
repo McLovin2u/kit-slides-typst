@@ -4,7 +4,7 @@
 //
 // You don't need to edit this file. Only presentation.typ
 // =========================================================
-#import "@preview/polylux:0.3.1": *
+#import "@preview/polylux:0.4.0" as polylux: *
 
 #let _kit-outer-margin = 3mm
 #let _kit-inner-margin = 11mm
@@ -127,7 +127,7 @@
 //=================
 
 #let title-slide(banner: none) = {
-  show: polylux-slide
+  show: slide
   if banner == none {
     banner = image("/assets/kit/banner.jpg")
   }
@@ -146,12 +146,12 @@
       ]
     ]
     // Title
-    #place(dy: 32mm, text(weight: "bold", size: 26pt, kit-title.display()))
+    #place(dy: 32mm, text(weight: "bold", size: 26pt, context { kit-title.get() }))
     // Subtitle
     #place(dy: 44mm)[
       #set text(weight: "bold", size: 18pt)
       #set par(leading: 0.3em)
-      #kit-subtitle.display()
+      #context { kit-subtitle.get() }
     ]
   ]
 
@@ -245,14 +245,14 @@
           pad(
             left: 6mm,
             context if kit-show-page-count.get() [
-              #logic.logical-slide.display()/#strong(utils.last-slide-number)
+              #toolbox.slide-number/#strong(utils.last-slide-number)
             ] else [
-              #logic.logical-slide.display()
+              #toolbox.slide-number
             ],
           ),
-          kit-date.display(),
-          [#kit-short-author.display() - #kit-short-title.display()],
-          align(right, kit-institute.display()),
+          context { kit-date.get() },
+          context { [#kit-short-author.get() - #kit-short-title.get()] },
+          align(right, context { kit-institute.get() }),
         )
       ]
     ]
@@ -263,7 +263,7 @@
     footer: footer,
     margin: (top: 22.5mm, bottom: _kit-bottom-margin),
   )
-  polylux-slide(wrapped-body)
+  polylux.slide(wrapped-body)
 }
 
 // This function is left here for backwards compatibility only. Please use #slide(side-by-side[][]) instead.
