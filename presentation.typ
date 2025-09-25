@@ -23,7 +23,7 @@
 ]
 
 #slide(title: [A split slide])[
-  #side-by-side[
+  #toolbox.side-by-side[
     A list
 
     - Item
